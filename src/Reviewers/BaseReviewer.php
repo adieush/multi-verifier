@@ -13,7 +13,7 @@ abstract class BaseReviewer implements Reviewer
         $this->setPrompt();
     }
 
-    protected function getFileText($filePath): string
+    protected function getFileText(string $filePath): string
     {
         return file_get_contents($filePath);
     }
