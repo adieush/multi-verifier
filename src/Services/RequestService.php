@@ -13,6 +13,9 @@ class RequestService
 
     public function getArguments()
     {
+        if(empty($this->arguments[1])){
+            throw new ArgumentException("First string argument not found. Should be filename");
+        }
         $fileChecker = new FileCheckService($this->arguments[1]);
 
         $response = [
