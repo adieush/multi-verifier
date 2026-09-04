@@ -1,16 +1,24 @@
 # Multi-Verifier
 
-Игрушечный проект для практики абстрактных классов и интерфейсов в PHP — и чтобы наглядно показать, зачем они вообще нужны.
+A toy project for practicing abstract classes and interfaces in PHP — and to show why they are useful in the first place.
 
-Идея простая: есть интерфейс `Reviewer` с одним методом `review(string $file)`, и несколько взаимозаменяемых реализаций:
+The idea is simple: there is a `Reviewer` interface with a single `review(string $file)` method, and several interchangeable implementations:
 
-- `FakeReviewer` — всегда хвалит ваш код 🙂
-- `AnthropicReviewer` — отправляет файл на ревью Claude
-- `OpenAIReviewer` — отправляет файл на ревью GPT
+- `FakeReviewer` — always praises your code 🙂
+- `AnthropicReviewer` — sends the file to Claude for review
+- `OpenAIReviewer` — sends the file to GPT for review
 
-Клиентскому коду всё равно, кто именно делает ревью — он работает с интерфейсом, а конкретная реализация выбирается аргументом командной строки.
+The client code doesn't care who exactly does the review — it works with the interface, and the concrete implementation is picked via a command-line argument.
 
-## Запуск
+## Requirements
+
+To try it locally you will need:
+
+- PHP 8+ and Composer
+- [Claude Code](https://claude.com/claude-code) installed — `AnthropicReviewer` calls the `claude` CLI under the hood
+- An OpenAI account with billing set up to create a secret API key (put it into `.env` as `OPENAI_API_KEY`)
+
+## Running
 
 ```bash
 composer install
@@ -19,4 +27,4 @@ php verify.php example.php anthropic
 php verify.php example.php openai
 ```
 
-Практического применения не имеет. Just for fun.
+No practical use whatsoever. Just for fun.
