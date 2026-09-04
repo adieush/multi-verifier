@@ -17,7 +17,7 @@ class OpenAIReviewer extends BaseReviewer
 
     public function review(string $file): string
     {
-        $code = file_get_contents($file);
+        $code = $this->getFileText($file);
 
         $response = $this->client->responses()->create([
             'model' => 'gpt-4o',

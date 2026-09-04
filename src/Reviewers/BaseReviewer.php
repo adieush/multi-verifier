@@ -13,6 +13,11 @@ abstract class BaseReviewer implements Reviewer
         $this->setPrompt();
     }
 
+    protected function getFileText($filePath): string
+    {
+        return file_get_contents($filePath);
+    }
+
     private function setPrompt() {
         $this->prompt = "Мне нужно, чтобы ты проревьювил этот файл на безопасность,
         стиль и так далее. Хочу, чтобы ты покритиковал код и предложил альтернативу.";

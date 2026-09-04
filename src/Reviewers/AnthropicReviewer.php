@@ -21,7 +21,7 @@ class AnthropicReviewer extends BaseReviewer
 
     public function review(string $file): string
     {
-        $code = file_get_contents($file);
+        $code = $this->getFileText($file);
         $prompt = $this->prompt . $code;
 
         return shell_exec('claude -p ' . escapeshellarg($prompt) . ' 2>&1');
