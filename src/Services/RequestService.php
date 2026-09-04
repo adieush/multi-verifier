@@ -13,14 +13,11 @@ class RequestService
 
     public function getArguments()
     {
-        try{
-            if(empty($this->arguments[1])){
-                throw new ArgumentException("First string argument not found. Should be filename");
-            }
-        } catch (ArgumentException $e) {
-            print $e->getMessage();
-            exit;
+
+        if(empty($this->arguments[1])){
+            throw new ArgumentException("First string argument not found. Should be filename");
         }
+
 
         $fileChecker = new FileCheckService($this->arguments[1]);
 
@@ -29,13 +26,10 @@ class RequestService
             "reviewer" => !empty($this->arguments[2]) ? ReviewerHelper::getReviewer($this->arguments[2]) : null
         ];
 
-        try {
-            if(empty($response["filePath"])) throw new ArgumentException("File not found.  First string argument");
-            if(empty($response["reviewer"])) throw new ArgumentException("Reviewer not found. Second string argument");
-        } catch (ArgumentException $e) {
-            print $e->getMessage();
-            exit;
-        }
+
+        if(empty($response["filePath"])) throw new ArgumentException("File not found.  First string argument");
+        if(empty($response["reviewer"])) throw new ArgumentException("Reviewer not found. Second string argument");
+
         
         return $response;
     }
